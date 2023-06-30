@@ -1,13 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sample Web Component</title>
+</head>
 <body>
-  <custom-input></custom-input>
+  <my-button></my-button>
+
   <script>
-    class CustomInput extends HTMLElement {
+    // Define the custom web component
+    class MyButton extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+
       connectedCallback() {
-        let mycontainer = document.createElement('div');
-        mycontainer.innerHTML = 'My Container Label';
+        this.render();
+        this.addEventListeners();
+      }
+
+      render() {
+        this.shadowRoot.innerHTML = `
+          <style>
+            /* Define the styles for the component */
+            button {
+              padding: 10px 20px;
+              background-color: blue;
+              color: white;
+              border: none;
+              border-radius: 5px;
+            }
+          </style>
+          <button>Click Me</button>
+        `;
+      }
+
+      addEventListeners() {
+        const button = this.shadowRoot.querySelector('button');
+        button.addEventListener('click', () => {
+          alert('Button clicked!');
+        });
       }
     }
 
-    customElements.define('custom-input', CustomInput)
+    // Register the custom element
+    customElements.define('my-button', MyButton);
   </script>
 </body>
+</html>
