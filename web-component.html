@@ -1,0 +1,13 @@
+<body>
+  <custom-input></custom-input>
+  <script>
+    class CustomInput extends HTMLElement {
+      connectedCallback() {
+        let mycontainer = document.createElement('div');
+        mycontainer.innerHTML = 'My Container Label';
+      }
+    }
+
+    customElements.define('custom-input', CustomInput)
+  </script>
+</body>
